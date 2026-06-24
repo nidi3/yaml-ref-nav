@@ -52,14 +52,19 @@ fails on a newer IDE, set the version string to your exact build (e.g. `"2026.1"
 CI (`.github/workflows/ci.yml`) runs `./gradlew build` on every push and PR to `main`.
 
 Releases are cut by pushing a `v*` tag. The release workflow
-(`.github/workflows/release.yml`) builds the plugin on JDK 21 and publishes a GitHub
-Release with the distribution zip attached:
+(`.github/workflows/release.yml`) then builds the plugin on JDK 21 and publishes a
+GitHub Release with the distribution zip attached.
+
+Use the helper script — it bumps `version` in `build.gradle.kts`, verifies the build,
+commits, tags, and pushes (after a confirmation prompt):
 
 ```bash
-# bump `version` in build.gradle.kts to match, then:
-git tag v0.1.0
-git push origin main --tags
+./release.sh 0.2.0            # or --no-build to skip the local build check
 ```
+
+It refuses to run on a dirty tree, off `main`, behind the remote, or for a tag that
+already exists. To do it by hand instead: bump `version` in `build.gradle.kts`, commit,
+then `git tag v0.2.0 && git push origin main --tags`.
 
 ## License
 
