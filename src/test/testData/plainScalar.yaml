@@ -1,0 +1,3 @@
+$defs:
+  Art:
+    type: obj<caret>ect

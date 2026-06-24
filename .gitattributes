@@ -1,0 +1,9 @@
+# Normalize line endings on checkin
+* text=auto
+
+# Gradle wrapper scripts: keep platform-correct endings
+*.bat           text eol=crlf
+gradlew         text eol=lf
+
+# Treat the wrapper jar as binary
+*.jar           binary

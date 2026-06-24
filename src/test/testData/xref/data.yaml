@@ -1,0 +1,3 @@
+$defs:
+  ArtTeam:
+    type: object

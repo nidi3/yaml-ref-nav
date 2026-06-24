@@ -1,0 +1,3 @@
+$defs:
+  Art:
+    $ref: "#/$defs/Does<caret>NotExist"

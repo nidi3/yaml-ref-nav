@@ -1,0 +1,6 @@
+$defs:
+  Nested:
+    Inner:
+      type: object
+  Uses:
+    $ref: "#/$defs/Nested/In<caret>ner"

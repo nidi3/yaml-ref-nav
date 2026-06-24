@@ -1,0 +1,27 @@
+<idea-plugin>
+    <id>guru.nidi.yamlrefnav</id>
+    <name>YAML JSON-Schema $ref Navigation</name>
+    <vendor email="ich@nidi.guru">Nidi</vendor>
+
+    <description><![CDATA[
+        Adds Ctrl/Cmd-click "Go to Declaration" navigation for <code>$ref</code> values
+        inside JSON-Schema documents written in YAML — a feature IntelliJ ships for JSON
+        but not for YAML (see JetBrains IJPL-166197).
+        <br/><br/>
+        Resolves:
+        <ul>
+            <li>in-file pointers: <code>#/$defs/Foo</code> (incl. nested <code>#/$defs/A/B</code>)</li>
+            <li>sibling / self files: <code>data.yaml#/$defs/Foo</code></li>
+            <li>relative files: <code>../sticky_type/data.yaml#/$defs/StickyType</code></li>
+        </ul>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.plugins.yaml</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <psi.referenceContributor
+                language="yaml"
+                implementation="guru.nidi.yamlrefnav.RefReferenceContributor"/>
+    </extensions>
+</idea-plugin>

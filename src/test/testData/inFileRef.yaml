@@ -1,0 +1,11 @@
+$schema: "https://json-schema.org/draft/2019-09/schema"
+$defs:
+  ArtTeam:
+    type: object
+  Art:
+    type: object
+    properties:
+      teams:
+        type: array
+        items:
+          $ref: "#/$defs/Art<caret>Team"

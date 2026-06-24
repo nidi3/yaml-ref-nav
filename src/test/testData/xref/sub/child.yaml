@@ -1,0 +1,3 @@
+$defs:
+  Uses:
+    $ref: "../data.yaml#/$defs/Art<caret>Team"
