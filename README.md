@@ -10,7 +10,14 @@ Resolves:
 - relative paths: `../sticky_type/data.yaml#/$defs/StickyType`
 - whole-file refs with no fragment: `../shared_models.yaml`
 
-## Build & install
+## Install
+
+Grab the latest `yaml-ref-nav-*.zip` from the [Releases](../../releases) page, then in your
+IDE: **Settings ▸ Plugins ▸ ⚙ ▸ Install Plugin from Disk…**, pick the zip, and restart.
+
+To build it yourself instead, see below.
+
+## Build
 
 > **Gradle JVM must be 21**, not your default JDK 25 (Gradle 8.10 doesn't run on 25).
 > In IDEA: Settings ▸ Build Tools ▸ Gradle ▸ *Gradle JVM* → pick the JBR 21 / OpenJDK 21
@@ -39,6 +46,20 @@ needed:
 `build.gradle.kts` builds against `intellijIdeaCommunity("2024.2.5")`. The plugin only
 needs the bundled YAML plugin, so it runs on IDEA Ultimate, PyCharm, etc. If loading
 fails on a newer IDE, set the version string to your exact build (e.g. `"2026.1"`).
+
+## Releasing
+
+CI (`.github/workflows/ci.yml`) runs `./gradlew build` on every push and PR to `main`.
+
+Releases are cut by pushing a `v*` tag. The release workflow
+(`.github/workflows/release.yml`) builds the plugin on JDK 21 and publishes a GitHub
+Release with the distribution zip attached:
+
+```bash
+# bump `version` in build.gradle.kts to match, then:
+git tag v0.1.0
+git push origin main --tags
+```
 
 ## License
 
