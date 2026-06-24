@@ -37,14 +37,12 @@ tasks.test {
     systemProperty("java.awt.headless", "true")
 }
 
-// This plugin adds no settings UI, so there are no searchable options to index.
-// The task launches a full headless IDE (slow, needs network for the marketplace
-// update-check) and only emits warnings on CI — disable it.
-tasks.buildSearchableOptions {
-    enabled = false
-}
-
 intellijPlatform {
+    // This plugin adds no settings UI, so there are nothing to index. Building
+    // searchable options launches a full headless IDE (slow, needs network for the
+    // marketplace update-check) and only emits warnings on CI — skip the whole chain.
+    buildSearchableOptions = false
+
     pluginConfiguration {
         ideaVersion {
             sinceBuild = "242"

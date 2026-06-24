@@ -1,0 +1,15 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- YAML structure: indented key lines -->
+  <g stroke="#8A93DB" stroke-width="3" stroke-linecap="round">
+    <path d="M8 9 H22"/>
+    <path d="M13 23 H20"/>
+    <path d="M8 30 H22"/>
+  </g>
+  <!-- the $ref line + navigation jump to its target node -->
+  <g stroke="#F4925E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M13 16 H24"/>
+    <path d="M24 16 C30 16 30 21 30 27"/>
+    <path d="M26 24 L30 28 L34 24"/>
+  </g>
+  <circle cx="30" cy="33" r="2.6" fill="#F4925E"/>
+</svg>
