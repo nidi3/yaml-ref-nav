@@ -47,6 +47,19 @@ class RefResolutionTest : BasePlatformTestCase() {
         assertNull(referenceAtCaret())
     }
 
+    fun testFindUsagesOfDefinitionListsRefsAcrossFiles() {
+        val usages = myFixture.testFindUsages("usages/data.yaml", "usages/sub/child.yaml")
+        val refs = usages.map { "${it.file?.name}: ${it.element?.text}" }.sorted()
+        assertEquals(
+            listOf(
+                "child.yaml: \"../data.yaml#/\$defs/ArtTeam\"",
+                "data.yaml: \"#/\$defs/ArtTeam\"",
+                "data.yaml: \"data.yaml#/\$defs/ArtTeam\"",
+            ),
+            refs,
+        )
+    }
+
     private fun referenceAtCaret() = myFixture.getReferenceAtCaretPosition()
 
     private fun resolvedKey(): YAMLKeyValue? {

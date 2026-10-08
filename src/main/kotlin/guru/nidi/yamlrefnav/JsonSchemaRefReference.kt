@@ -5,6 +5,7 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiManager
 import com.intellij.psi.PsiReferenceBase
 import org.jetbrains.yaml.psi.YAMLFile
+import org.jetbrains.yaml.psi.YAMLKeyValue
 import org.jetbrains.yaml.psi.YAMLMapping
 import org.jetbrains.yaml.psi.YAMLScalar
 import org.jetbrains.yaml.psi.YAMLValue
@@ -51,7 +52,11 @@ class JsonSchemaRefReference(
         return PsiManager.getInstance(element.project).findFile(targetVf) as? YAMLFile
     }
 
-    /** Walks a JSON Pointer like `/$defs/Foo/bar` down the YAML mapping tree. */
+    /**
+     * Walks a JSON Pointer like `/$defs/Foo/bar` down the YAML mapping tree.
+     * Resolves to the [YAMLKeyValue] itself, the named element Find Usages targets,
+     * so [isReferenceTo] matches it.
+     */
     private fun resolvePointer(file: YAMLFile, fragment: String): PsiElement? {
         val parts = fragment.split('/')
             .filter { it.isNotEmpty() }
@@ -62,7 +67,7 @@ class JsonSchemaRefReference(
         for (part in parts) {
             val mapping = current as? YAMLMapping ?: return null
             val keyValue = mapping.getKeyValueByKey(part) ?: return null
-            result = keyValue.key ?: keyValue
+            result = keyValue
             current = keyValue.value
         }
         return result

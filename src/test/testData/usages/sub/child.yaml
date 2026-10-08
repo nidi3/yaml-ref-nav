@@ -1,0 +1,5 @@
+$defs:
+  Uses:
+    $ref: "../data.yaml#/$defs/ArtTeam"
+  Unrelated:
+    description: ArtTeam

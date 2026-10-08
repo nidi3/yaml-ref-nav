@@ -1,0 +1,11 @@
+$defs:
+  Art<caret>Team:
+    type: object
+  Art:
+    properties:
+      team:
+        $ref: "#/$defs/ArtTeam"
+      self:
+        $ref: "data.yaml#/$defs/ArtTeam"
+      other:
+        $ref: "#/$defs/Art"
